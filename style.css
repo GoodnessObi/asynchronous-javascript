@@ -46,6 +46,26 @@ body {
     padding: 100px;
 }
 
+.form {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80px;
+}
+
+.form input {
+    border: 1px solid #EB4D4D;
+    font: 18px;
+    padding: 5px;
+    width: 80px;
+    font-family: Lato;
+}
+
+.form input:focus {
+    outline: none;
+}
+
+
 
 
 /**********************************************
@@ -142,13 +162,32 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice {
+.dice-group {
     position: absolute;
     left: 50%;
-    top: 178px;
+    top: 158px;
     transform: translateX(-50%);
+  
+}
+
+.dice {
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+
+.dice-1 {
+    left: 25%;
+    position: absolute;
+    -ms-transform: rotate(20deg); /* IE 9 */
+    transform: rotate(20deg);
+}
+
+.dice-2 {
+    top: 100px;
+    right: 25%;
+    position: absolute;
+    -ms-transform: rotate(40deg); /* IE 9 */
+    transform: rotate(40deg);
 }
 
 .winner { background-color: #f7f7f7; }
