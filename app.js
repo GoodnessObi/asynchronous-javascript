@@ -8,7 +8,7 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-let scores, roundScore, activePlayer, gamePlaying;
+let scores, roundScore, activePlayer, prevScore, gamePlaying;
 
 init();
 
@@ -17,14 +17,20 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     // 1. Random Number 
     //random integer between 1 and 6
     let dice =Math.floor(Math.random() * 6) +1;
-
+    // prevScore = dice;
+    // console.log(dice);
     // 2. Display the result
     let diceDom = document.querySelector('.dice');
     diceDom.style.display = 'block';
     diceDom.src = `dice-${dice}${'.png'}`;
 
     // 3. Update the roundScore if the rolled number is not 1
-    if (dice !== 1) {
+    if (dice === 6 && prevScore === 6) {
+      //player loses turn
+      scores[activePlayer] = 0;
+      document.querySelector(`#score-${activePlayer}`).textContent = scores[activePlayer];
+      nextPlayer();
+    } else if (dice !== 1) {
       //add score
       roundScore += dice;
       document.querySelector(`#current-${activePlayer}`).textContent = roundScore;
@@ -32,6 +38,8 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
       //Next player
       nextPlayer();
     }
+    prevScore = dice;
+    console.log(prevScore);
   }
 })
 
@@ -60,6 +68,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 function nextPlayer() {
   activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
   roundScore = 0;
+  prevScore = 0;
 
   document.getElementById('current-0').textContent = '0';
   document.getElementById('current-1').textContent = '0';
@@ -78,9 +87,11 @@ document.querySelector('.btn-new').addEventListener('click', init);
 function init() {
   scores = [0, 0];
   roundScore = 0;
+  prevScore = 0;
   activePlayer = 0;
   gamePlaying= true;
 
+  console.log(prevScore);
   document.querySelector('.dice').style.display = 'none';
 
   document.getElementById('score-0').textContent = '0';
@@ -96,3 +107,5 @@ function init() {
 
   document.querySelector('.player-0-panel').classList.add('active');
 }
+
+// 1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable)
