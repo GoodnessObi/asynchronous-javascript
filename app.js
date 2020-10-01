@@ -9,18 +9,20 @@ GAME RULES:
 
 */
 let scores, roundScore, prevScore, activePlayer, gamePlaying, finalScore;
-// let input = document.querySelector('#final-score');
-// input.addEventListener('oninput', function() {
-//   console.log(input.value);
-//   // console.log(inp)
-//   // finalScore = this.value;
-// })
-// console.log(finalScore);
+let input = document.querySelector('#final-score');
+
+input.addEventListener('change', function() {
+  finalScore = input.value;
+})
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
   if(gamePlaying) {
+    //Disable input once game is on
+    input.disabled = true;
+    document.querySelector('.form').classList.add('score-set');
+
     // 1. Random Number 
     //random integer between 1 and 6
     let diceRandomOne =Math.floor(Math.random() * 6) +1;
@@ -49,6 +51,10 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
   if (gamePlaying) {
+     //Disable input once game is on
+     input.disabled = true;
+     document.querySelector('.form').classList.add('score-set');
+
     //Add current score to global score
     scores[activePlayer] += roundScore
 
@@ -56,7 +62,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     document.querySelector(`#score-${activePlayer}`).textContent = scores[activePlayer];
 
     //Check if player won the game
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= finalScore) {
       document.querySelector(`#name-${activePlayer}`).textContent = 'Winner!';
       document.querySelector('.dice-1').style.display = 'none';
       document.querySelector('.dice-2').style.display = 'none';
@@ -89,10 +95,15 @@ document.querySelector('.btn-new').addEventListener('click', init);
 function init() {
   scores = [0, 0];
   prevScore = 0;
+  finalScore = 100;
   roundScore = 0;
   activePlayer = 0;
   gamePlaying= true;
+  input.disabled = false;
 
+  input.value = finalScore
+  
+  document.querySelector('.form').classList.remove('score-set');
   document.querySelector('.dice-1').style.display = 'none';
   document.querySelector('.dice-2').style.display = 'none';
 

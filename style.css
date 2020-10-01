@@ -51,11 +51,12 @@ body {
     left: 50%;
     transform: translateX(-50%);
     top: 80px;
+    font-size: 18px;
 }
 
 .form input {
     border: 1px solid #EB4D4D;
-    font: 18px;
+    font-size: 18px;
     padding: 5px;
     width: 80px;
     font-family: Lato;
@@ -65,8 +66,16 @@ body {
     outline: none;
 }
 
+.form.score-set {
+    transform: translateX(-38%);
+    font-weight: 300; 
+}
 
-
+.form.score-set input {
+    border: none;
+    color: #EB4D4D;
+    background: transparent;
+}
 
 /**********************************************
 *** PLAYERS
