@@ -17,8 +17,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     // 1. Random Number 
     //random integer between 1 and 6
     let dice =Math.floor(Math.random() * 6) +1;
-    // prevScore = dice;
-    // console.log(dice);
+
     // 2. Display the result
     let diceDom = document.querySelector('.dice');
     diceDom.style.display = 'block';
@@ -39,7 +38,6 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
       nextPlayer();
     }
     prevScore = dice;
-    console.log(prevScore);
   }
 })
 
@@ -91,7 +89,6 @@ function init() {
   activePlayer = 0;
   gamePlaying= true;
 
-  console.log(prevScore);
   document.querySelector('.dice').style.display = 'none';
 
   document.getElementById('score-0').textContent = '0';
